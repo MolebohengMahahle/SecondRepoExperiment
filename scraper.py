@@ -1,19 +1,27 @@
+#!/usr/bin/env python3
+
 import requests
 from bs4 import BeautifulSoup
 
-# Website to scrape
-url = "https://news.mandela.ac.za/"
 
-# Send request
-response = requests.get(url)
+def main():
+    # Website to scrape
+    url = "https://news.mandela.ac.za/"
 
-# Create Beautiful Soup object
-soup = BeautifulSoup(response.text, "html.parser")
+    # Send request
+    response = requests.get(url)
 
-# Find article titles
-headings = soup.find_all("h2")
+    # Create Beautiful Soup object
+    soup = BeautifulSoup(response.text, "html.parser")
 
-print("Latest news headlines:\n")
+    # Find article titles
+    headings = soup.find_all("h2")
 
-for i, heading in enumerate(headings, start=1):
-    print(f"{i}. {heading.get_text(strip=True)}")
+    print("Latest news headlines:\n")
+
+    for i, heading in enumerate(headings, start=1):
+        print(f"{i}. {heading.get_text(strip=True)}")
+
+
+if __name__ == "__main__":
+    main()
